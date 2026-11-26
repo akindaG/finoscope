@@ -1,0 +1,48 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Data and model binaries
+data/raw/*
+data/processed/*
+data/features/*
+!data/**/README.md
+*.parquet
+*.feather
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.onnx
+models/*
+!models/README.md
+
+# Node
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+
+# OS, editors and logs
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.log
+logs/

@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: finoscope-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: finoscope
+      POSTGRES_USER: finoscope
+      POSTGRES_PASSWORD: finoscope_dev_only
+    ports:
+      - "5432:5432"
+    volumes:
+      - finoscope_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U finoscope -d finoscope"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  finoscope_postgres_data:
