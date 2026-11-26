@@ -1,6 +1,6 @@
 # Candidate dataset assessment: OFR Financial Stress Index
 
-**Status: preliminary research. Not an approved project dataset.**
+**Status: preliminary research. The group pitch and dataset approval are pending.**
 
 ## Official source
 
@@ -8,78 +8,59 @@
 - Dataset page: https://www.financialresearch.gov/financial-stress-index/
 - Dataset: OFR Financial Stress Index (OFR FSI).
 
-## Facts confirmed from the publisher's page
+## Publisher-described characteristics
 
 The OFR describes the FSI as a daily, market-based snapshot of stress in global
-financial markets. It is constructed from 33 financial market variables,
-including yield spreads, valuation measures and interest rates.
-
-The publisher describes five indicator categories:
-- Credit
-- Equity valuation
-- Funding
-- Safe assets
-- Volatility
-
-The index also reports contributions across three regions:
-- United States
-- Other advanced economies
-- Emerging markets
+financial markets, constructed from 33 financial market variables. It reports
+five indicator categories: credit, equity valuation, funding, safe assets and
+volatility. It also reports contributions from the United States, other
+advanced economies and emerging markets.
 
 The publisher states that the index is calculated after each U.S. trading day
-and that the published data is current from two business days prior.
+and that published data is current from two business days prior.
 
-## Suitability questions still open
+## Source and reuse checks still required
 
-1. What exact downloadable file and historical coverage will the group use?
-2. What licence or terms govern downloading, storing, modifying and
-   redistributing the data? The page reviewed does not establish a specific
-   open-data licence. Do not assume one.
-3. Does the downloadable file contain the 33 underlying variables, category
-   contributions, regional contributions, or only aggregate index values?
-4. Are historical observations revised? If so, can the project preserve a
-   reproducible source snapshot?
-5. Is the proposed target label meaningful and sufficiently represented?
-6. Does the target represent a future event that can be defined without
-   looking ahead in model features?
-7. Is this problem and dataset available for the group's project, and has the
-   lecturer approved it through the project pitch?
+The official page provides a download control, but the exact direct file URL
+and the applicable licence or reuse terms have not yet been verified. Do not
+assume the dataset is public domain or cleared for commercial use. The actual
+downloaded file, its metadata and any third-party restrictions must be checked.
 
-## Proposed research framing. Pending approval
+## Proposed research framing. Not approved
 
-A possible supervised classification problem is predicting whether an
-elevated-stress episode begins within a future horizon. The previously discussed
-20-trading-day horizon is only a hypothesis.
+A possible supervised classification problem is predicting whether a new
+elevated-stress episode begins within a future horizon. A 20-trading-day
+horizon was previously suggested as a hypothesis only.
 
-Before implementation, the group must define:
-- the stress threshold and why it is defensible;
-- what constitutes a new episode versus continuation of an existing episode;
-- the event start date;
-- the forecast horizon;
-- how overlapping event windows are labelled;
-- the prediction timestamp and information available at that timestamp;
-- the positive-class prevalence and whether there are enough independent
-  episodes for chronological evaluation.
+Before implementation, the group must define and justify:
+- the stress threshold;
+- what counts as a new episode versus continuation of an existing episode;
+- event start date and forecast horizon;
+- treatment of overlapping future windows;
+- prediction timestamp and information available by that timestamp;
+- positive-class prevalence and number of independent events;
+- chronological training, validation and test periods.
 
-## Leakage controls
+## Leakage and operational considerations
 
-- Features for date *t* may use only information available by the prediction
-  cut-off on date *t*.
-- A label may use future observations only to determine the future outcome.
-- All fitted preprocessing, feature selection, scaling and resampling must be
-  learned from training data only.
-- Train, validation and test periods must be chronological.
-- The two-business-day publication lag must be considered if the intended use
-  is a real-time warning system.
+- Features at time *t* may use only information available by the prediction
+  cut-off at *t*.
+- The label may use future observations to define the outcome, but future
+  values must never enter model features.
+- The two-business-day publication lag must be represented if the system is
+  intended to issue real-time warnings.
+- All fitted preprocessing and feature selection must be learned from training
+  data only.
+- Evaluation must use chronological partitions and report their date ranges.
 
 ## Preliminary conclusion
 
-The OFR FSI is conceptually relevant to MACROGUARD and has a clear official
-publisher. It is not yet cleared for the assignment because the exact file
-structure, licence/terms, target feasibility and lecturer approval remain
-unverified.
+The OFR FSI is conceptually relevant to MACROGUARD and has an official
+publisher. Dataset approval, exact file schema, reuse terms and target
+feasibility remain unresolved. Do not train a final model or claim a
+commercially reusable dataset until these checks are complete.
 
-## Source
+## Sources
 
 Office of Financial Research, “OFR Financial Stress Index,”
 https://www.financialresearch.gov/financial-stress-index/ (accessed 2026-11-26).
